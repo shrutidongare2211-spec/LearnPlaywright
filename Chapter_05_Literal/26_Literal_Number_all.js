@@ -1,227 +1,148 @@
 // 26_Literal_Number_all.js
-// All about Number types and representations in JavaScript with many examples
+// Number types, literals, and utilities in JavaScript
 
-/*
-  ============================================
-  JavaScript has only ONE Number type
-  ============================================
-  - In JavaScript, all numbers are of type "number".
-  - There is no separate int, float, double, or long type.
-  - Internally, every number is stored as a 64-bit floating-point value
-    (IEEE 754 standard).
+console.log("=== 1. Integer Literals ===");
+// Whole numbers without a decimal point
+let positiveInt = 100;
+let negativeInt = -50;
+let zero = 0;
+let largeInt = 123456789;
 
-  This means: 10, 10.5, 1e5, 0xFF, 0b1010 all have the same type: number
-*/
+console.log("Positive integer:", positiveInt);
+console.log("Negative integer:", negativeInt);
+console.log("Zero:", zero);
+console.log("Large integer:", largeInt);
+console.log("typeof 100:", typeof 100);
 
-console.log("=== 1. Integer Examples ===");
-let a = 0;
-let b = 10;
-let c = -25;
-let d = 999999;
-let e = +50;
-
-console.log("Zero:", a, "| Type:", typeof a);
-console.log("Positive integer:", b, "| Type:", typeof b);
-console.log("Negative integer:", c, "| Type:", typeof c);
-console.log("Large integer:", d, "| Type:", typeof d);
-console.log("Integer with + sign:", e, "| Type:", typeof e);
-
-console.log("\n=== 2. Decimal / Floating Point Examples ===");
-let pi = 3.14;
+console.log("\n=== 2. Floating Point Literals ===");
+// Numbers with a decimal point
+let pi = 3.14159;
 let price = 99.99;
-let temperature = -5.5;
-let smallDecimal = 0.0001;
-let largeDecimal = 12345.6789;
-let zeroBeforeDecimal = 0.5;
-let noZeroBeforeDecimal = .75;
+let negativeFloat = -10.5;
+let smallFloat = 0.001;
+let floatWithoutLeadingZero = .75; // valid but less readable
+let floatWithoutTrailingZero = 5.; // valid, equals 5.0
 
 console.log("Pi:", pi);
 console.log("Price:", price);
-console.log("Temperature:", temperature);
-console.log("Small decimal:", smallDecimal);
-console.log("Large decimal:", largeDecimal);
-console.log("0.5:", zeroBeforeDecimal);
-console.log(".75:", noZeroBeforeDecimal);
+console.log("Negative float:", negativeFloat);
+console.log("Small float:", smallFloat);
+console.log("Without leading zero:", floatWithoutLeadingZero);
+console.log("Without trailing zero:", floatWithoutTrailingZero);
+console.log("typeof 3.14:", typeof 3.14);
 
-console.log("\n=== 3. Scientific Notation Examples ===");
-let thousand = 1e3;       // 1 * 10^3 = 1000
-let million = 1e6;        // 1 * 10^6 = 1000000
-let tiny = 1e-3;          // 1 / 10^3 = 0.001
-let veryTiny = 2.5e-6;    // 0.0000025
-let bigScientific = 3.5e8; // 350000000
-let negativeScientific = -4.2e4; // -42000
+console.log("\n=== 3. Numeric Separators ===");
+// Underscore (_) can be used as a separator for readability
+let oneMillion = 1_000_000;
+let oneBillion = 1_000_000_000;
+let binaryWithSeparator = 0b1010_1010;
+let hexWithSeparator = 0xFF_FF;
+let bigIntWithSeparator = 9_007_199_254_740_991n;
 
-console.log("1e3:", thousand);
-console.log("1e6:", million);
-console.log("1e-3:", tiny);
-console.log("2.5e-6:", veryTiny);
-console.log("3.5e8:", bigScientific);
-console.log("-4.2e4:", negativeScientific);
+console.log("One million:", oneMillion);
+console.log("One billion:", oneBillion);
+console.log("Binary with separator:", binaryWithSeparator);
+console.log("Hex with separator:", hexWithSeparator);
+console.log("BigInt with separator:", bigIntWithSeparator);
 
-console.log("\n=== 4. Hexadecimal Examples (Base 16) ===");
-let hexRed = 0xFF0000;    // Red color in RGB
-let hexGreen = 0x00FF00;  // Green color in RGB
-let hexBlue = 0x0000FF;   // Blue color in RGB
-let hexWhite = 0xFFFFFF;
-let hexSmall = 0xA;
+console.log("\n=== 4. BigInt ===");
+// BigInt is used for very large whole numbers
+let big1 = 100n;
+let big2 = 123456789012345678901234567890n;
+let bigFromNumber = BigInt(50);
+let bigFromString = BigInt("9007199254740993");
 
-console.log("0xFF0000:", hexRed);
-console.log("0x00FF00:", hexGreen);
-console.log("0x0000FF:", hexBlue);
-console.log("0xFFFFFF:", hexWhite);
-console.log("0xA:", hexSmall);
+console.log("BigInt 100n:", big1, "| typeof:", typeof big1);
+console.log("Very large BigInt:", big2);
+console.log("BigInt from number:", bigFromNumber);
+console.log("BigInt from string:", bigFromString);
+console.log("100n + 50n =", 100n + 50n);
+console.log("100n * 2n =", 100n * 2n);
+// console.log(100n + 50); // Error: Cannot mix BigInt and other types
 
-console.log("\n=== 5. Octal Examples (Base 8) ===");
-let octalSeven = 0o7;
-let octalTen = 0o10;      // 8 in decimal
-let octalTwenty = 0o24;   // 20 in decimal
-let octalSeventySeven = 0o77; // 63 in decimal
-
-console.log("0o7:", octalSeven);
-console.log("0o10:", octalTen);
-console.log("0o24:", octalTwenty);
-console.log("0o77:", octalSeventySeven);
-
-console.log("\n=== 6. Binary Examples (Base 2) ===");
-let binaryZero = 0b0;
-let binaryOne = 0b1;
-let binaryTwo = 0b10;
-let binaryFive = 0b101;
-let binaryTen = 0b1010;
-let binarySixteen = 0b10000;
-let binaryTwoFiftyFive = 0b11111111;
-
-console.log("0b0:", binaryZero);
-console.log("0b1:", binaryOne);
-console.log("0b10:", binaryTwo);
-console.log("0b101:", binaryFive);
-console.log("0b1010:", binaryTen);
-console.log("0b10000:", binarySixteen);
-console.log("0b11111111:", binaryTwoFiftyFive);
-
-console.log("\n=== 7. Basic Arithmetic Examples ===");
-console.log("10 + 5 =", 10 + 5);
-console.log("10 - 5 =", 10 - 5);
-console.log("10 * 5 =", 10 * 5);
-console.log("10 / 5 =", 10 / 5);
-console.log("10 / 3 =", 10 / 3);
-console.log("10 % 3 =", 10 % 3);
-console.log("2 ** 3 =", 2 ** 3);
-console.log("16 ** 0.5 =", 16 ** 0.5); // square root
-
-console.log("\n=== 8. Special Number Values ===");
-console.log("1 / 0:", 1 / 0);          // Infinity
-console.log("-1 / 0:", -1 / 0);        // -Infinity
+console.log("\n=== 5. Special Values ===");
+// Infinity, -Infinity, and NaN
+console.log("1 / 0:", 1 / 0);               // Infinity
+console.log("-1 / 0:", -1 / 0);             // -Infinity
 console.log("Infinity + 1:", Infinity + 1);
 console.log("Infinity - Infinity:", Infinity - Infinity); // NaN
-console.log("0 / 0:", 0 / 0);          // NaN
-console.log("'abc' * 2:", "abc" * 2);  // NaN
-console.log("NaN + 5:", NaN + 5);      // NaN
-console.log("typeof Infinity:", typeof Infinity);
-console.log("typeof NaN:", typeof NaN);
+console.log("0 / 0:", 0 / 0);               // NaN
+console.log("'abc' * 2:", "abc" * 2);       // NaN
+console.log("NaN === NaN:", NaN === NaN);   // false
+console.log("isNaN('abc'):", isNaN("abc")); // true
 
-console.log("\n=== 9. Number Limits ===");
-console.log("MAX_SAFE_INTEGER:", Number.MAX_SAFE_INTEGER);
-console.log("MIN_SAFE_INTEGER:", Number.MIN_SAFE_INTEGER);
-console.log("MAX_VALUE:", Number.MAX_VALUE);
-console.log("MIN_VALUE:", Number.MIN_VALUE);
-console.log("POSITIVE_INFINITY:", Number.POSITIVE_INFINITY);
-console.log("NEGATIVE_INFINITY:", Number.NEGATIVE_INFINITY);
+console.log("\n=== 6. Number Object Wrapper ===");
+// Number can also be used as an object wrapper (not recommended usually)
+let numObj = new Number(123);
+let numPrimitive = 123;
 
-console.log("\n=== 10. BigInt Examples ===");
-let big1 = 100n;
-let big2 = 9007199254740993n;
-let big3 = 123456789012345678901234567890n;
-let bigFromNumber = BigInt(50);
+console.log("Number object:", numObj);
+console.log("typeof Number object:", typeof numObj);     // object
+console.log("typeof primitive:", typeof numPrimitive);   // number
+console.log("numObj.valueOf():", numObj.valueOf());      // 123
+console.log("numObj == numPrimitive:", numObj == numPrimitive);   // true
+console.log("numObj === numPrimitive:", numObj === numPrimitive); // false
 
-console.log("BigInt 100n:", big1, "| Type:", typeof big1);
-console.log("BigInt large:", big2);
-console.log("BigInt very large:", big3);
-console.log("BigInt from number:", bigFromNumber);
-console.log("100n + 50n =", big1 + 50n);
-console.log("100n * 2n =", big1 * 2n);
+console.log("\n=== 7. Number Properties ===");
+console.log("Number.MAX_VALUE:", Number.MAX_VALUE);
+console.log("Number.MIN_VALUE:", Number.MIN_VALUE);
+console.log("Number.MAX_SAFE_INTEGER:", Number.MAX_SAFE_INTEGER);
+console.log("Number.MIN_SAFE_INTEGER:", Number.MIN_SAFE_INTEGER);
+console.log("Number.POSITIVE_INFINITY:", Number.POSITIVE_INFINITY);
+console.log("Number.NEGATIVE_INFINITY:", Number.NEGATIVE_INFINITY);
+console.log("Number.NaN:", Number.NaN);
+console.log("Number.EPSILON:", Number.EPSILON);
 
-console.log("\n=== 11. Number Conversion Examples ===");
-console.log("Number('100'):", Number("100"));
-console.log("Number('3.14'):", Number("3.14"));
-console.log("Number(''):", Number(""));
-console.log("Number('abc'):", Number("abc"));
-console.log("Number(true):", Number(true));
-console.log("Number(false):", Number(false));
-console.log("Number(null):", Number(null));
-console.log("Number(undefined):", Number(undefined));
-
-console.log("\n=== 12. Parsing String to Number Examples ===");
-console.log("parseInt('100'):", parseInt("100"));
-console.log("parseInt('100px'):", parseInt("100px"));
-console.log("parseInt('3.14'):", parseInt("3.14"));
-console.log("parseInt('FF', 16):", parseInt("FF", 16));
-console.log("parseInt('77', 8):", parseInt("77", 8));
-console.log("parseInt('1010', 2):", parseInt("1010", 2));
-console.log("parseFloat('3.14'):", parseFloat("3.14"));
-console.log("parseFloat('3.14abc'):", parseFloat("3.14abc"));
-console.log("parseFloat('   5.5  '):", parseFloat("   5.5  "));
-
-console.log("\n=== 13. Formatting Number Examples ===");
-let num = 12345.6789;
-console.log("Original:", num);
-console.log("toFixed(0):", num.toFixed(0));
-console.log("toFixed(2):", num.toFixed(2));
-console.log("toFixed(4):", num.toFixed(4));
-console.log("toPrecision(4):", num.toPrecision(4));
-console.log("toPrecision(6):", num.toPrecision(6));
-console.log("toString():", num.toString());
-console.log("toString(2):", num.toString(2));   // binary
-console.log("toString(8):", num.toString(8));   // octal
-console.log("toString(16):", num.toString(16)); // hexadecimal
-
-console.log("\n=== 14. Checking Number Examples ===");
-console.log("Number.isInteger(10):", Number.isInteger(10));
-console.log("Number.isInteger(10.5):", Number.isInteger(10.5));
+console.log("\n=== 8. Number Methods ===");
+// Number static methods
 console.log("Number.isNaN(NaN):", Number.isNaN(NaN));
 console.log("Number.isNaN('abc'):", Number.isNaN("abc"));
 console.log("Number.isFinite(100):", Number.isFinite(100));
 console.log("Number.isFinite(Infinity):", Number.isFinite(Infinity));
-console.log("Number.isFinite(NaN):", Number.isFinite(NaN));
+console.log("Number.isInteger(10):", Number.isInteger(10));
+console.log("Number.isInteger(10.5):", Number.isInteger(10.5));
+console.log("Number.parseInt('100px'):", Number.parseInt("100px"));
+console.log("Number.parseFloat('3.14abc'):", Number.parseFloat("3.14abc"));
+console.log("Number.parseInt('FF', 16):", Number.parseInt("FF", 16));
 
-console.log("\n=== 15. Math Object Examples ===");
+// Instance methods
+let num = 12345.6789;
+console.log("num.toFixed(2):", num.toFixed(2));
+console.log("num.toFixed(0):", num.toFixed(0));
+console.log("num.toPrecision(4):", num.toPrecision(4));
+console.log("num.toExponential(2):", num.toExponential(2));
+console.log("num.toString():", num.toString());
+console.log("num.toString(16):", num.toString(16));
+console.log("(100).toString(2):", (100).toString(2));
+
+console.log("\n=== 9. Math Object ===");
 console.log("Math.PI:", Math.PI);
 console.log("Math.E:", Math.E);
+console.log("Math.abs(-10):", Math.abs(-10));
 console.log("Math.round(4.4):", Math.round(4.4));
 console.log("Math.round(4.5):", Math.round(4.5));
 console.log("Math.floor(4.9):", Math.floor(4.9));
 console.log("Math.ceil(4.1):", Math.ceil(4.1));
 console.log("Math.trunc(4.9):", Math.trunc(4.9));
-console.log("Math.abs(-10):", Math.abs(-10));
 console.log("Math.max(1, 5, 3):", Math.max(1, 5, 3));
 console.log("Math.min(1, 5, 3):", Math.min(1, 5, 3));
 console.log("Math.sqrt(16):", Math.sqrt(16));
+console.log("Math.cbrt(27):", Math.cbrt(27));
 console.log("Math.pow(2, 3):", Math.pow(2, 3));
 console.log("Math.random():", Math.random());
-console.log("Random 1-10:", Math.floor(Math.random() * 10) + 1);
-
-console.log("\n=== 16. Number Precision Example ===");
-console.log("0.1 + 0.2:", 0.1 + 0.2);
-console.log("Fixed 0.1 + 0.2:", (0.1 + 0.2).toFixed(2));
-
-console.log("\n=== 17. Number in Template Literals ===");
-let quantity = 5;
-let unitPrice = 12.5;
-let total = quantity * unitPrice;
-console.log(`Quantity: ${quantity}`);
-console.log(`Unit Price: $${unitPrice}`);
-console.log(`Total: $${total.toFixed(2)}`);
+console.log("Random 1 to 10:", Math.floor(Math.random() * 10) + 1);
 
 /*
   ============================================
-  Summary
+  Quick Summary
   ============================================
-  - JavaScript uses only the "number" type for all numeric values.
-  - Numbers can be written as integers, decimals, scientific notation,
-    hexadecimal, octal, or binary.
-  - Special values: Infinity, -Infinity, NaN.
-  - BigInt is used for very large whole numbers and is a separate type.
-  - Use Number methods like toFixed(), parseInt(), parseFloat(), isNaN()
-    for common operations.
-  - Math object provides many useful mathematical functions.
+  - Integer literals: whole numbers like 10, -5, 0
+  - Floating point literals: numbers with decimals like 3.14, .75
+  - Numeric separators: use _ for readability like 1_000_000
+  - BigInt: for very large whole numbers, ends with n or uses BigInt()
+  - Special values: Infinity, -Infinity, NaN
+  - Number object wrapper: new Number(value) — avoid in normal code
+  - Number properties: MAX_VALUE, MIN_VALUE, MAX_SAFE_INTEGER, etc.
+  - Number methods: isNaN, isFinite, isInteger, parseInt, parseFloat, toFixed, etc.
+  - Math object: provides constants and mathematical functions
 */
