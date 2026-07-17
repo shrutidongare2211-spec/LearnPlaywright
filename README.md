@@ -10,6 +10,7 @@ This repository contains my personal notes, examples, and exercises while learni
 | `Chapter_02_Javascript_Commands` | Core JavaScript commands and fundamentals |
 | `Chapter_03_Identifier_Literals` | Rules for identifiers, literals, comments, and VS Code shortcuts |
 | `Chapter_04_Javascript Concepts` | Variables (`var`, `let`, `const`), functions, scope, and hoisting |
+| `Chapter_05_Literal` | JavaScript literals: strings, template literals, numbers, `null`, `undefined` |
 
 ## Topics Covered
 
@@ -20,6 +21,9 @@ This repository contains my personal notes, examples, and exercises while learni
 - `var`, `let`, and `const`
 - Function declarations
 - Scope and hoisting
+- Strings, single/double quotes, and backticks (template literals)
+- Number literals, BigInt, `Infinity`, `NaN`
+- `null` and `undefined`
 - VS Code keyboard shortcuts for Windows
 
 ## How to Run
