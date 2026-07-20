@@ -11,6 +11,7 @@ This repository contains my personal notes, examples, and exercises while learni
 | `Chapter_03_Identifier_Literals` | Rules for identifiers, literals, comments, and VS Code shortcuts |
 | `Chapter_04_Javascript Concepts` | Variables (`var`, `let`, `const`), functions, scope, and hoisting |
 | `Chapter_05_Literal` | JavaScript literals: strings, template literals, numbers, `null`, `undefined` |
+| `Chapter_06_Double_Triple_Equal` | Comparison operators: loose (`==`) vs strict (`===`) equality |
 
 ## Topics Covered
 
@@ -24,6 +25,8 @@ This repository contains my personal notes, examples, and exercises while learni
 - Strings, single/double quotes, and backticks (template literals)
 - Number literals, BigInt, `Infinity`, `NaN`
 - `null` and `undefined`
+- Comparison operators: `==` vs `===`
+- Confusing equality cases in JavaScript
 - VS Code keyboard shortcuts for Windows
 
 ## How to Run
