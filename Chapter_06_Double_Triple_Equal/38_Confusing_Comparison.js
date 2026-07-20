@@ -1,148 +1,98 @@
+console.log("38 — Confusing Comparisons in JS");
 // ============================================================
-// Topic: Confusing Comparison Cases (== vs ===) in JavaScript
-// File: 38_Confusing_Comparison.js
+// 38 — Confusing Comparisons in JS:  ==  vs  ===
+// ============================================================
+//
+// Rule of thumb:
+//   ==   → loose equality  (does type coercion, surprising)
+//   ===  → strict equality (no coercion, what you usually want)
+//
+// Run with:  node 38_Confusing_Comparsion.js
 // ============================================================
 
-/*
-  ONE SIMPLE EXPLANATION:
 
-  ==  (Loose Equality)  -> compares VALUES only. It does TYPE COERCION first.
-  === (Strict Equality) -> compares VALUE and TYPE. No type coercion.
+// ---------- 1. Empty string vs 0 vs "0"  (transitivity broken) ----------
+console.log("" == 0);        // true   → "" coerced to Number → 0
+console.log("0" == 0);       // true   → "0" coerced to Number → 0
+console.log("" == "0");      // false  → both strings, compared as-is
 
-  Think of it like this:
-  - ==  -> "Are these values kind of equal?" (may convert types)
-  - === -> "Are these exactly the same in value AND type?" (no conversion)
-
-  Best Practice: Always use === to avoid confusing results.
-*/
+// === fixes it
+console.log("" === 0);       // false
+console.log("0" === 0);      // false
+console.log("" === "0");     // false
 
 
-// --------------------------------------------------------
-// 1. Number vs Boolean
-// --------------------------------------------------------
-
-console.log("0 == false  ->", 0 == false);   // true  -> 0 becomes false
-console.log("0 === false ->", 0 === false);  // false -> different types
-
-console.log("1 == true  ->", 1 == true);    // true  -> 1 becomes true
-console.log("1 === true ->", 1 === true);   // false -> different types
+// ---------- 2. null and undefined ----------
+console.log(null == undefined);   // true   → special rule in ==
+console.log(null === undefined);  // false  → different types
+console.log(null == 0);           // false  → null only == undefined/null
+console.log(null >= 0);           // true   → >= coerces null to 0  (gotcha!)
+console.log(null > 0);            // false
+console.log(null == 0 || null > 0); // false … but null >= 0 is true 🤯
 
 
-// --------------------------------------------------------
-// 2. Empty String vs Number / Boolean
-// --------------------------------------------------------
-
-console.log("'' == 0    ->", '' == 0);      // true  -> '' becomes 0
-console.log("'' === 0   ->", '' === 0);     // false -> different types
-
-console.log("'' == false  ->", '' == false);  // true  -> both become 0
-console.log("'' === false ->", '' === false); // false -> different types
+// ---------- 3. Booleans coerce to numbers ----------
+console.log(true == 1);      // true
+console.log(true == "1");    // true   → "1" → 1, true → 1
+console.log(false == 0);     // true
+console.log(false == "");    // true   → both → 0
+console.log(false == "0");   // true   → "0" → 0, false → 0
+console.log(true === 1);     // false  → different types
 
 
-// --------------------------------------------------------
-// 3. null and undefined
-// --------------------------------------------------------
-
-console.log("null == undefined  ->", null == undefined);   // true  -> special rule
-console.log("null === undefined ->", null === undefined);  // false -> different types
-
-console.log("null == 0  ->", null == 0);   // false -> null does NOT become 0
-console.log("null == '' ->", null == '');  // false -> null does NOT become ''
+// ---------- 4. NaN — never equal to anything, even itself ----------
+console.log(NaN == NaN);     // false
+console.log(NaN === NaN);    // false
+console.log(Number.isNaN(NaN));  // true  ← correct way to check
 
 
-// --------------------------------------------------------
-// 4. NaN (Not a Number)
-// --------------------------------------------------------
-
-console.log("NaN == NaN  ->", NaN == NaN);   // false -> NaN is never equal to anything
-console.log("NaN === NaN ->", NaN === NaN);  // false -> NaN is never equal to anything
-
-// Use Number.isNaN() to check NaN
-console.log("Number.isNaN(NaN) ->", Number.isNaN(NaN)); // true
-
-
-// --------------------------------------------------------
-// 5. Array and Object Comparisons
-// --------------------------------------------------------
-
-console.log("[] == false  ->", [] == false);   // true  -> [] becomes empty string -> 0 -> false
-console.log("[] === false ->", [] === false);  // false -> different types
-
-console.log("[1] == true  ->", [1] == true);   // true  -> [1] becomes "1" -> 1 -> true
-console.log("[1] === true ->", [1] === true);  // false -> different types
-
-console.log("[0] == false  ->", [0] == false);  // true  -> [0] becomes "0" -> 0 -> false
-console.log("[0] === false ->", [0] === false); // false -> different types
+// ---------- 5. Object vs primitive ----------
+console.log([] == false);    // true   → [] → "" → 0, false → 0
+console.log([] == 0);        // true   → [] → "" → 0
+console.log([] == "");       // true   → [] → ""
+console.log([0] == false);   // true   → [0] → "0" → 0
+console.log([1] == true);    // true   → [1] → "1" → 1
+console.log([1, 2] == "1,2"); // true   → array toString
+console.log({} == {});       // false  → different references
+console.log([] == []);       // false  → different references
 
 
-// --------------------------------------------------------
-// 6. String Number vs Number
-// --------------------------------------------------------
-
-console.log("'5' == 5   ->", '5' == 5);    // true  -> string becomes number
-console.log("'5' === 5  ->", '5' === 5);   // false -> different types
-
-console.log("'0' == false  ->", '0' == false);  // true  -> '0' becomes 0 -> false
-console.log("'0' === false ->", '0' === false); // false -> different types
+// ---------- 6. String to number traps ----------
+console.log(" " == 0);       // true   → " " trimmed → "" → 0
+console.log("\n\t" == 0);    // true   → whitespace → 0
+console.log("0x10" == 16);   // true   → hex string parsed
+console.log("1e2" == 100);   // true   → scientific notation
 
 
-// --------------------------------------------------------
-// 7. Quick Comparison Table
-// --------------------------------------------------------
-
-/*
-  Expression              | == (Loose) | === (Strict) | Why?
-  ------------------------|------------|--------------|----------------------------------------
-  0 == false              | true       | false        | 0 converts to false
-  1 == true               | true       | false        | 1 converts to true
-  '' == 0                 | true       | false        | '' converts to 0
-  '' == false             | true       | false        | both convert to 0
-  null == undefined       | true       | false        | special JS rule
-  NaN == NaN              | false      | false        | NaN is never equal
-  [] == false             | true       | false        | [] -> '' -> 0 -> false
-  [1] == true             | true       | false        | [1] -> '1' -> 1 -> true
-  [0] == false            | true       | false        | [0] -> '0' -> 0 -> false
-  '5' == 5                | true       | false        | '5' converts to 5
-  '0' == false            | true       | false        | '0' -> 0 -> false
-  null == 0               | false      | false        | null does not convert to 0
-  undefined == false      | false      | false        | undefined does not convert to false
-*/
+// ---------- 7. The infamous trio ----------
+console.log(null == false);       // false  ← surprise! null only == undefined
+console.log(undefined == false);  // false  ← same here
+console.log(undefined == 0);      // false
 
 
-// --------------------------------------------------------
-// 8. Real Example
-// --------------------------------------------------------
+// ---------- 8. typeof results (always strings) ----------
+console.log(typeof null);          // "object"  (legacy bug)
+console.log(typeof undefined);     // "undefined"
+console.log(typeof NaN);           // "number"
+console.log(typeof null === "object");      // true
+console.log(typeof undefined === "undefined"); // true
 
-let userInput = "0";      // came from a form input (always string)
-let zeroNumber = 0;
-
-// Bug: using == can give unexpected result
-if (userInput == false) {
-  console.log("Loose check: userInput is falsy");
-} else {
-  console.log("Loose check: userInput is truthy");
-}
-
-// Safe: using === checks both value and type
-if (userInput === false) {
-  console.log("Strict check: userInput is false");
-} else {
-  console.log("Strict check: userInput is NOT false");
-}
+// NaN = not a Number
 
 
-// --------------------------------------------------------
-// 9. Best Practice
-// --------------------------------------------------------
-
-/*
-  Always use === and !== in real code.
-  == and != can cause hidden bugs because of type coercion.
-
-  Use == only when you really want type coercion.
-*/
+// ---------- 10. Quick interview cheats ----------
+// "" == 0           → true
+// "" == "0"         → false
+// 0 == "0"          → true
+// null == undefined → true
+// null == 0         → false   but   null >= 0 → true
+// NaN == NaN        → false
+// [] == ![]         → true   (![] → false → 0; [] → "" → 0)
+console.log([] == ![]);   // true 🤯
 
 
 // ============================================================
-// END
+// TAKEAWAY:  Always use ===  (and !==).
+// Use ==  only for null/undefined check:   if (x == null) { ... }
+// Use Object.is for NaN and -0 edge cases.
 // ============================================================

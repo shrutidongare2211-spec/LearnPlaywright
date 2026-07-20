@@ -19,6 +19,8 @@ console.log(false == 0);
 console.log(true == "1");
 console.log(true == 2);
 
-
+//console.log(5 != "5"); //false, 5 = int, "5" string, both of them are not equal?
+console.log(5 !== "5"); //true
+//console.log(5 !=== "5"); This doesn't exists
 
 

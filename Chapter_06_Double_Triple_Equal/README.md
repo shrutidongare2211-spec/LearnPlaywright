@@ -1,6 +1,6 @@
 # Chapter 06: Double Equal (==) vs Triple Equal (===)
 
-This folder explains the difference between loose equality (`==`) and strict equality (`===`) in JavaScript, with practical and confusing examples.
+This folder covers JavaScript operators including arithmetic, comparison, logical, ternary, type, nullish coalescing, increment/decrement, and string concatenation.
 
 ## Files
 
@@ -15,14 +15,25 @@ This folder explains the difference between loose equality (`==`) and strict equ
 | `36_Comparison_Strict_loose.js` | Difference between `==` and `===` |
 | `37_IQ_Loose_Strict.js` | IQ questions on loose vs strict equality |
 | `38_Confusing_Comparison.js` | Confusing cases of `==` vs `===` |
+| `39_Logical_Operator.js` | Logical operators: `&&`, `||`, `!` |
+| `40_String_Concatenation_Operator.js` | String concatenation using `+=` |
+| `41_Ternary_Operator.js` | Ternary operator `? :` |
+| `42_Type_Operator.js` | Type operators: `typeof`, `instanceof` |
+| `43_Increment_Decrement_Operator.js` | Increment `++` and decrement `--` |
+| `44_Null_Opertor.js` | Nullish coalescing operator `??` |
 
 ## Key Topics
 
+- Arithmetic, modulus, exponential, and comparison operators
 - Loose equality (`==`) with type coercion
 - Strict equality (`===`) without type coercion
 - Confusing cases: `0 == false`, `'' == 0`, `null == undefined`
-- `NaN` is never equal to anything
-- Array and object comparison quirks
+- Logical operators: `&&`, `||`, `!`
+- Ternary operator `? :`
+- `typeof` and `instanceof`
+- Increment/decrement operators
+- Nullish coalescing `??`
+- String concatenation
 - Best practice: always use `===`
 
 ## How to Run
