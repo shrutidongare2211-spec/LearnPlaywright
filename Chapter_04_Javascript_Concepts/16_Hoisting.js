@@ -3,7 +3,7 @@
 
 console.log(greeting);
 var greeting = "Hello";
-console.log(greeting);
+//console.log(greeting);
 
 //Behind the scenes:
 
@@ -14,9 +14,9 @@ console.log(greeting);
 
 
 //var a;
-console.log(a);
-var a = "Shruti";
-console.log(a);
+//console.log(a);
+//var a = "Shruti";
+//console.log(a);
 
 
 

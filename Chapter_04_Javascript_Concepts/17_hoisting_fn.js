@@ -2,8 +2,8 @@ function getUserStatus()
 {
     //var status_code;       done by JS Engine(optimized the code)
     console.log(status_code);
-    var status_code = "Active";
-    console.log(status_code);
+    let status_code = "Active";
+    //console.log(status_code);
 }
 
 getUserStatus();
